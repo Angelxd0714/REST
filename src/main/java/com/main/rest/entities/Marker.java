@@ -32,6 +32,5 @@ public class Marker {
     private Long id;
     @Column(name = "name")
     private String name;
-    @OneToMany(mappedBy = "marker", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> products;
+
 }
