@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este proyecto es una aplicación REST API desplegada utilizando Docker y alojada en una instancia EC2 de AWS. La aplicación está configurada para ejecutarse con una base de datos MySQL y está expuesta en el puerto 8060.
+Este proyecto es una aplicación REST API desplegada utilizando Docker y alojada en una instancia appWEB de AZURE. La aplicación está configurada para ejecutarse con una base de datos MySQL y está expuesta en el puerto 8060.
 
 ## Estructura del Proyecto
 
