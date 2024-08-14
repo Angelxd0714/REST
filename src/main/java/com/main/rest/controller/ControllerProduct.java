@@ -28,12 +28,13 @@ public class ControllerProduct {
         if(image.isEmpty()){
             return ResponseEntity.badRequest().body("La imagen es requerida");
         }
+
         String nameFile = UUID.randomUUID().toString() +"_"+ Objects.requireNonNull(image.getOriginalFilename()).replace(" ","_");
         String filePath = Paths.get(uploadDir, nameFile).toString();
         try {
             image.transferTo(Paths.get(filePath));
-            String urlImage = uploadDir+nameFile;
-            String fullUrlImage = "http:localhost:8060"+urlImage;
+            String urlImage = "/"+uploadDir+"/"+nameFile;
+            String fullUrlImage = "http://localhost:8060"+urlImage;
             Product  product = new Product();
             product.setName(name);
             product.setPrice(price);
@@ -65,16 +66,17 @@ public class ControllerProduct {
         }
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestParam("nombre")String name, @RequestParam
-            ("precio") BigDecimal price, @RequestParam("descripcion")String description, @RequestParam("imagen") MultipartFile image, @RequestParam("category_id") Category category_id, @RequestParam("marker_id") Marker marker_id){
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestParam(value = "nombre",required = false)String name, @RequestParam
+            (value = "precio",required = false) BigDecimal price, @RequestParam(value = "descripcion", required = false)String description, @RequestParam(value = "imagen",required = false) MultipartFile image, @RequestParam(value = "category_id", required = false) Category category_id, @RequestParam(value = "marker_id",required = false) Marker marker_id){
         try {
             Product productUpdate = serviceProduct.findProductById(id);
             if(image.isEmpty()){
                 return ResponseEntity.badRequest().body("La imagen es requerida");
             }
-            image.transferTo(Paths.get("uploads", image.getOriginalFilename()));
-            String urlImage = "/upload/"+image.getOriginalFilename();
+            image.transferTo(Paths.get("upload", image.getOriginalFilename()));
+            String urlImage = "/"+uploadDir+"/"+image.getOriginalFilename();
             String fullUrlImage = "http:localhost:8060"+urlImage;
+            System.out.println(fullUrlImage);
             productUpdate.setName(name);
             productUpdate.setPrice(price);
             productUpdate.setDescription(description);
@@ -84,7 +86,7 @@ public class ControllerProduct {
             serviceProduct.updateProduct(id,productUpdate);
             return ResponseEntity.ok("OK");
         }catch (Exception e){
-            return ResponseEntity.status(500).body("Error al actualizar el producto");
+            return ResponseEntity.status(500).body("Error al actualizar el producto: "+e.getMessage());
         }
     }
     @DeleteMapping("/delete/{id}")
