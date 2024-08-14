@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.UUID;
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1/product")
 public class ControllerProduct {

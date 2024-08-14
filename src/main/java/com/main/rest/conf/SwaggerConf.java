@@ -20,16 +20,16 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
         ),
         servers = {
-                @Server(url = "http://localhost:8060", description = "Local server")
+                @Server(url = "http://172.27.0.3:8060", description = "Local server")
         }, tags = {
         @Tag(name = "Product", description = "Product API")
 }
 
 )
-@SecurityScheme(
+//@SecurityScheme(
 
-        type = SecuritySchemeType.HTTP, name = "bearerAuth", scheme = "bearer", bearerFormat = "JWT",
-        description = "Enter JWT token"
-)
+//        type = SecuritySchemeType.HTTP, name = "bearerAuth", scheme = "bearer", bearerFormat = "JWT",
+//        description = "Enter JWT token"
+//)
 public class SwaggerConf {
 }
