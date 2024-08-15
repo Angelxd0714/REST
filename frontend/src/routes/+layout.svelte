@@ -1,15 +1,21 @@
 <script>
 	import '../app.css';
+	import { page } from '$app/stores';
+	import { Navbar, NavBrand, NavLi, NavUl, NavHamburger } from 'flowbite-svelte';
+	$: activeUrl = $page.url.pathname;
 </script>
 
 <header>
-	<nav class="bg-transparent items-center w-full flex flex-row justify-center h-20 text-black">
-		<ul class="flex flex-row gap-4">
-			<li><a href="/">Home</a></li>
-			<li><a href="/about">About</a></li>
-		</ul>
-	</nav>
+	<Navbar>
+		<NavHamburger />
+		<NavUl {activeUrl}>
+			<NavLi href="/inicio">Inicio</NavLi>
+			<NavLi href="/addProduct">Agregar Producto</NavLi>
+			<NavLi href="/markers">Fabricantes</NavLi>
+		</NavUl>
+	</Navbar>
 </header>
-<main>
+<main class="">
 	<slot></slot>
 </main>
+<footer></footer>

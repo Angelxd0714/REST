@@ -1,10 +1,7 @@
-<script>
-	
-    
+<script lang="ts">
+
 </script>
 
+<div>
 
-	<!-- Insert the list: -->
-	
-	<!-- --- -->
-
+</div>
