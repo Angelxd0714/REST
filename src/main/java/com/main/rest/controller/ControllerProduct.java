@@ -28,13 +28,14 @@ public class ControllerProduct {
         if(image.isEmpty()){
             return ResponseEntity.badRequest().body("La imagen es requerida");
         }
+        System.out.println(name);
 
         String nameFile = UUID.randomUUID().toString() +"_"+ Objects.requireNonNull(image.getOriginalFilename()).replace(" ","_");
         String filePath = Paths.get(uploadDir, nameFile).toString();
         try {
             image.transferTo(Paths.get(filePath));
             String urlImage = "/"+uploadDir+"/"+nameFile;
-            String fullUrlImage = "http://localhost:8060"+urlImage;
+            String fullUrlImage = "http://173.27.0.3:8060"+urlImage;
             Product  product = new Product();
             product.setName(name);
             product.setPrice(price);
@@ -75,7 +76,7 @@ public class ControllerProduct {
             }
             image.transferTo(Paths.get("upload", image.getOriginalFilename()));
             String urlImage = "/"+uploadDir+"/"+image.getOriginalFilename();
-            String fullUrlImage = "http:localhost:8060"+urlImage;
+            String fullUrlImage = "http://173.27.0.3:8060"+urlImage;
             System.out.println(fullUrlImage);
             productUpdate.setName(name);
             productUpdate.setPrice(price);

@@ -59,7 +59,7 @@
 	const handleClick = () => {
 		validate();
 		const formData = new FormData();
-		formData.append("nombre", nombre);
+		formData.append('nombre', nombre);
 		formData.append('precio', precio.toString());
 		formData.append('descripcion', descripcion);
 		formData.append('category_id', selectedCat);
