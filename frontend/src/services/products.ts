@@ -17,23 +17,28 @@ const products = () => {
             console.error('Fetch error:', error);
         }
     };
-    const sendData = async (data:any={})=>{
-       
+    const sendData = async (data: any = {}) => {
         try {
-            const add = await fetch("http://172.27.0.3:8060/api/v1/product/add",{
-                method:"POST",
-                body:data
-            })
-            if(!add.ok){
-                throw new Error('Network response was not ok');
+            const response = await fetch("http://172.27.0.3:8060/api/v1/product/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data) // Convertir el objeto a JSON
+            });
+    
+            if (!response.ok) {
+                const errorResponse = await response.json();
+                throw new Error(`Network response was not ok: ${errorResponse.message}`);
             }
-            const response = await add.json();
-            message = response.message;
+    
+            const result = await response.json();
+            message = result.message;
         } catch (error) {
             console.error('Fetch error:', error);
-            
+            message = 'Error occurred while sending data'; // Puedes ajustar el mensaje de error
         }
-    }
+    };
     return {
         subscribe,
         sendData,
