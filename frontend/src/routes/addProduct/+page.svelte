@@ -58,19 +58,22 @@
 	};
 	const handleClick = () => {
 		validate();
-		const formData = new FormData();
-		formData.append('nombre', nombre);
-		formData.append('precio', precio.toString());
-		formData.append('descripcion', descripcion);
-		formData.append('category_id', selectedCat);
-		formData.append('marker_id', selectedMar);
-		if (fileuploadprops) {
-			formData.append('imagen', fileuploadprops);
-		}
-		productDataService.sendData(formData);
-		for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-    }
+	const data = {
+		nombre: nombre,
+		precio: precio.toString(),
+		descripcion: descripcion,
+		category_id: selectedCat,
+		marker_id: selectedMar,
+		imagen:fileuploadprops,
+	};
+
+	if (fileuploadprops) {
+		data.imagen = fileuploadprops;
+	}
+
+	console.log(JSON.stringify(data)); // Esto debería mostrar los datos correctamente en formato JSON
+
+	productDataService.sendData(data);
 	};
 </script>
 

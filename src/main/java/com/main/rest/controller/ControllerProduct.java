@@ -35,7 +35,7 @@ public class ControllerProduct {
         try {
             image.transferTo(Paths.get(filePath));
             String urlImage = "/"+uploadDir+"/"+nameFile;
-            String fullUrlImage = "http://173.27.0.3:8060"+urlImage;
+            String fullUrlImage = "http://173.27.0.3:8060/root"+urlImage;
             Product  product = new Product();
             product.setName(name);
             product.setPrice(price);

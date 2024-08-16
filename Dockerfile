@@ -10,14 +10,14 @@ WORKDIR /root
 COPY ./pom.xml /root
 COPY ./.mvn /root/.mvn
 COPY ./mvnw /root
-
+COPY ./upload /root/upload
 # DESCARGAR LAS DEPENDENCIAS
 RUN ./mvnw dependency:go-offline
 
 # COPIAR EL CODIGO FUENTE DENTRO DEL CONTENEDOR
 COPY ./src /root/src
 
-COPY ./upload  /root/
+
 # CONSTRUIR NUESTRA APLICACION
 RUN ./mvnw clean install -DskipTests
 

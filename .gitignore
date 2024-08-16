@@ -18,6 +18,7 @@ config/ssl
 *.iws
 *.iml
 *.ipr
+*.jpeg
 
 ### NetBeans ###
 /nbproject/private/

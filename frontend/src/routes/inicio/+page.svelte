@@ -15,6 +15,7 @@
 			}
 			const result = await response.json();
 			data = result; // Actualiza la variable de estado con los datos
+			console.log(data)
 		} catch (error) {
 			console.error('Error fetching data:', error);
 		}
